@@ -97,6 +97,35 @@ Copies Paint Effects brush parameters between strokes with full ramp sub-attribu
 
 ---
 
+## Third-Party Tools
+
+### Maya Volume Remesh (DynaMesh-style voxel remeshing)
+[brianlaiii/maya-volume-remesh](https://github.com/brianlaiii/maya-volume-remesh) by **Brian Lai** — MIT License.
+Included as a git submodule at `modelling/third_party/maya-volume-remesh` and not modified here.
+
+- Live voxel remeshing via a single `btDynaMesh` node: unions selected meshes/groups into a closed quad mesh
+- Source geometry is preserved; Resolution, Polish, Offset and Smooth Preview are tuned from the Attribute Editor / Channel Box
+- C++ evaluation with optional CUDA acceleration and a pure-Python fallback
+- Delete History on the output mesh bakes the result
+
+**Setup**
+
+```bash
+git submodule update --init --recursive
+python modelling/third_party/maya-volume-remesh/install.py   # or drag install.py into the Maya viewport
+```
+
+**Usage** (Maya Script Editor, with polygon meshes selected)
+
+```python
+import maya_volume_remesh
+node, mesh = maya_volume_remesh.create()
+```
+
+See the upstream README for build instructions for the native/CUDA backends.
+
+---
+
 ## Repository Structure
 
 ```
@@ -108,7 +137,9 @@ WORKSPACE/
 │   └── path_remapper.py
 ├── modelling/
 │   ├── edge_loop_optimizer.py
-│   └── paint_effects_copier.py
+│   ├── paint_effects_copier.py
+│   └── third_party/
+│       └── maya-volume-remesh/   # git submodule (Brian Lai, MIT)
 └── groom_foliage/
     └── GFBuild/
         ├── curve_tools.py
@@ -141,6 +172,7 @@ WORKSPACE/
 | GFBuild — Build Tab (tubes, cards, twist) | ✅ Working |
 | GFBuild — Braid | 🔧 In development |
 | GFBuild — Simulation Integration | 🔧 In development |
+| Maya Volume Remesh (third-party) | 🔗 Integrated as submodule |
 
 ---
 

@@ -1,0 +1,3 @@
+[submodule "modelling/third_party/maya-volume-remesh"]
+	path = modelling/third_party/maya-volume-remesh
+	url = https://github.com/brianlaiii/maya-volume-remesh
